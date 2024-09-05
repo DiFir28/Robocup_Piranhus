@@ -1,7 +1,6 @@
 #ifndef _leds_H_
 #define _leds_H_
 
-#include "config.h"
 #include "Adafruit_NeoPixel.h"
 // #include "geometry.h"
 

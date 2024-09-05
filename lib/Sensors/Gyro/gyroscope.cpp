@@ -1,4 +1,5 @@
 #include "gyroscope.h"
+
 void Gyroscope::init()
 {
     GYRO_SERIAL_.begin(115200);
@@ -37,5 +38,5 @@ void Gyroscope::update()
     }
 
     Serial.print(" Gyro: ");
-    Serial.println(angle);
+    Serial.print(angle);
 }

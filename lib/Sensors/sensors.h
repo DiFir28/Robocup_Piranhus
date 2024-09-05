@@ -5,8 +5,8 @@
 #include "config.h"
 #include "Wire.h"
 
-#include "gyroscope.h"
-#include "IR_sensor.h"
+#include "Gyro/gyroscope.h"
+#include "IR_sensor/IR_sensor.h"
 
 //----------------------------------------------------------------
 // Sensors class declaration

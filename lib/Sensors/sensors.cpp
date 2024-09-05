@@ -1,6 +1,5 @@
 #include "sensors.h"
 
-
 // Initialize sensors
 void Sensors::init()
 {

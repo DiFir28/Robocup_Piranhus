@@ -1,9 +1,9 @@
 #include "config.h"
 
 // #include <line.h>
-#include "leds.h"
+ #include "leds.h"
 
-#include "movement.h"
+ #include "movement.cpp"
 
 Leds l;
 void but5()
@@ -13,7 +13,8 @@ void but5()
 
 void setup()
 {
-  // motors_init();
+  sensors.init();
+   motors_init();
   l.init(4,31,39);
 
   Serial.begin(115200);  
@@ -23,8 +24,12 @@ void setup()
 }
 
 void loop(){
-  go(0, 0);
+  Serial.print(millis());
+  sensors.update();
+  go(180,200 );
   delay(10);
   Serial.println("");
-  l.colorWipe(0,100,0,100);
+  l.off();
+  l.on(millis()/1000%4,0,100,0);
+
 }

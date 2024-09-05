@@ -2,9 +2,6 @@
 #define _structs_H_
 
 #include <Arduino.h>
-#include "Wire.h"
-#include "Adafruit_NeoPixel.h"
-
 struct line
 {
   short lenght;
