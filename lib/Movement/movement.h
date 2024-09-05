@@ -1,8 +1,8 @@
 #ifndef _movement_H_
 #define _movement_H_
 
-#include "structs.h"
-#include "classes.h"
+#include "motor.h"
+
 
 motor motorA;
 motor motorB;
@@ -27,12 +27,12 @@ void acceleration(float acc)
     motorD.acceleration_s = acc;
 }
 
-void go(short speed, short direction)
+void go(short direction_go, short turn_direction )
 {
 
-    motorA.go(speed, direction );
-    motorB.go(speed, direction );
-    motorC.go(speed, direction);
-    motorD.go(speed, direction);
-}
+    motorA.go(direction_go, turn_direction);
+    motorB.go(direction_go, turn_direction);
+    motorC.go(direction_go, turn_direction);
+    motorD.go(direction_go, turn_direction);}
+
 #endif
