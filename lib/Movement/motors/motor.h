@@ -3,7 +3,7 @@
 
 #include "config.h"
 
-#include "sensors.h"
+
 //================================================================
 
 class motor

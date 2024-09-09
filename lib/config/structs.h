@@ -26,12 +26,12 @@ struct lisens
 {
   bool bool_value = 0;
   bool broken = 0;
-  line g;
+  line vector;
   short analog_value = 0;
   short value = 1;
   short max_value = 0;
   short min_value = 0;
-  short threshold_value = 0;
+  short threshold_value = 300;
 };
 
 #endif

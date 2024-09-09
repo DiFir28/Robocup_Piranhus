@@ -12,6 +12,8 @@ public:
     void init(int address);
     void update();
     int angle;
+    int distance;
+    short data[2];
 
 private:
     int address_;

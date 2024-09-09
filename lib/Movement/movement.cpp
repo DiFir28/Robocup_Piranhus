@@ -2,6 +2,7 @@
 #define _movement_CPP_
 
 #include "motors/motor.h"
+#include "sensors.h"
 
 motor motorA;
 motor motorB;

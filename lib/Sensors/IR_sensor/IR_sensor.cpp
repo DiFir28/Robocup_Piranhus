@@ -1,6 +1,5 @@
 #include "IR_sensor.h"
 
-
 // Initial IR sensor
 void IR_sensor::init(int address)
 {
@@ -8,23 +7,20 @@ void IR_sensor::init(int address)
     Wire.begin();
 }
 
-
 // Update IR sensor
 void IR_sensor::update()
 {
-    Wire.requestFrom(address_, IR_SENSOR_QUANTITY_BYTE);
-    int i = 0;
-    char char_angle[4] = "";
-    char buf[10];
-    while (1 < Wire.available()) // organizes the data from the slave in the table
+    Wire.requestFrom(IR_SENSOR_ADDRESS, 2 * sizeof(short));
+
+    byte buffer[2 * sizeof(short)];
+    for (unsigned int i = 0; i < 2 * sizeof(short); i++)
     {
-        buf[i] = Wire.read(); // receive a byte as character
-        i++;
+        buffer[i] = Wire.read();
     }
-    char *char_link = strchr(buf, ',');
-    strncpy(char_angle, buf, char_link - buf);
-    angle = atoi(char_angle);
+    memcpy(&data, buffer, 2 * sizeof(short));
 
     Serial.print(" Ball: ");
-    Serial.print(angle);
+    Serial.print(data[0]);
+    Serial.print(" ");
+    Serial.print(data[1]*5.5-5);
 }

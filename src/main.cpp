@@ -2,7 +2,7 @@
 
 // #include <line.h>
  #include "leds.h"
-
+//  #include "line_2.h"
  #include "movement.cpp"
 
 Leds l;
@@ -24,9 +24,11 @@ void setup()
 }
 
 void loop(){
+  sensors.li.update();
   Serial.print(millis());
-  sensors.update();
-  go(180,200 );
+  // line_detect();
+  // sensors.update();
+  // go(180,200 );
   delay(10);
   Serial.println("");
   l.off();

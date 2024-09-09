@@ -1,6 +1,6 @@
 #include "motor.h"
 
-#include "geometry.cpp"
+#include "geometry.h"
 
 
 

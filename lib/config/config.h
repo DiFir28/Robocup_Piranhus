@@ -9,7 +9,7 @@
 #define GYRO_SERIAL_ Serial8
 
 #define IR_SENSOR_ADDRESS 0x9
-#define IR_SENSOR_QUANTITY_BYTE 8
+#define IR_SENSOR_QUANTITY_BYTE sizeof(short)*2
 
 #define gyro sensors.gyro_.angle
 

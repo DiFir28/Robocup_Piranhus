@@ -1,16 +1,14 @@
-#ifndef _geometry_CPP_
-#define _geometry_CPP_
+#ifndef _geometry_h_
+#define _geometry_h_
 
 #include "structs.h"
 
-
-
-int sign(int num_sign)
+inline int sign(int num_sign)
 {
     return (num_sign > 0) * 2 - 1;
 }
 
-extern short between(short first_angle_b, short second_angle_b)
+inline short between(short first_angle_b, short second_angle_b)
 {
     int output = int(first_angle_b - second_angle_b);
     output = (360 - abs(output)) % 180 * (abs(output) > 180) * sign(-output) + !(abs(output) > 180) * output;
@@ -18,7 +16,7 @@ extern short between(short first_angle_b, short second_angle_b)
     return output;
 }
 
-line bisector(line first, line second)
+inline line bisector(line first, line second)
 {
     line bisector_return;
 
@@ -28,7 +26,7 @@ line bisector(line first, line second)
     return bisector_return;
 }
 
-line height(line first, line second)
+inline line height(line first, line second)
 {
     line height_return, third;
 
@@ -40,7 +38,7 @@ line height(line first, line second)
     return height_return;
 }
 
-line median(line first, line second)
+inline line median(line first, line second)
 {
     line median_return, third;
 
@@ -51,6 +49,4 @@ line median(line first, line second)
     return median_return;
 }
 
-
-
- #endif
+#endif

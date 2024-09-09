@@ -5,6 +5,7 @@
 #include "config.h"
 #include "Wire.h"
 
+#include "line/line_2.h"
 #include "Gyro/gyroscope.h"
 #include "IR_sensor/IR_sensor.h"
 
@@ -21,10 +22,10 @@ public:
     void update();
     IR_sensor IR;
     Gyroscope gyro_;
+    lisenses li;
 
 private:
 };
-
 
 
 #endif // _sensors_H_
