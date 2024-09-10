@@ -13,9 +13,6 @@ public:
     void read_data_from_camera();
     char buff[128];
 private:
-    int SS_PIN = 10;
-    int BAUD_RATE = 19200;
-    int CHAR_BUFF = 128;
 
 };
 

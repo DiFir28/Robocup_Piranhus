@@ -1,8 +1,4 @@
 #include <SPI.h>
-#define SS_PIN 10
-#define BAUD_RATE 19200
-#define CHAR_BUF 128
-
 // Initial SPI
 void camera::init()
 {
