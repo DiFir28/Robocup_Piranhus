@@ -1,6 +1,6 @@
 #include <SPI.h>
 // Initial SPI
-void camera::init()
+void spi::init()
 {
   pinMode(SS_PIN, OUTPUT);
   Serial.begin(BAUD_RATE);
@@ -13,7 +13,7 @@ void camera::init()
 }
 
 // read data from camera
-void camera::read()
+void spi::read()
 {
   int32_t len = 0;
   char buff[CHAR_BUF] = { 0 };
