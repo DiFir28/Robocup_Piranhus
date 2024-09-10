@@ -11,6 +11,11 @@
 #define IR_SENSOR_ADDRESS 0x9
 #define IR_SENSOR_QUANTITY_BYTE sizeof(short)*2
 
+#define SS_PIN 10
+#define BAUD_RATE 19200
+#define CHAR_BUF 128
+
+
 #define gyro sensors.gyro_.angle
 
 #endif // _config_H_
