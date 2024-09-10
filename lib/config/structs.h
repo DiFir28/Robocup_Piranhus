@@ -31,7 +31,7 @@ struct lisens
   short value = 1;
   short max_value = 0;
   short min_value = 0;
-  short threshold_value = 300;
+  short threshold_value = 200;
 };
 
 #endif
