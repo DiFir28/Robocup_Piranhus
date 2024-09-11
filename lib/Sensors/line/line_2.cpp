@@ -1,5 +1,32 @@
 #include "line_2.h"
 
+void lisenses::calib()
+{
+
+    for (int c = 0; c < 8; c++)
+    {
+        setConfigurate(c);
+        delay(1);
+        for (int step = 0; step < 4; step++)
+        {
+            line_sensors[step * 8 + c].min_value = min(analogRead(slavPins[step]), line_sensors[step * 8 + c].min_value);
+            line_sensors[step * 8 + c].max_value = max(analogRead(slavPins[step]), line_sensors[step * 8 + c].max_value);
+            line_sensors[step * 8 + c].threshold_value = int((line_sensors[step * 8 + c].min_value + line_sensors[step * 8 + c].max_value) / 2.2);
+            line_sensors[step * 8 + c].broken = ((line_sensors[step * 8 + c].min_value + line_sensors[step * 8 + c].max_value) < 100);
+            if (line_sensors[step * 8 + c].broken)
+            {
+                Serial.println("ERR_LINE");
+            }
+        }
+    }
+    Serial.print("NewT:");
+    for (int i = 0; i < 32; i++)
+    {
+        Serial.print(line_sensors[i].threshold_value);
+        Serial.print(" ");
+    }
+}
+
 void lisenses::init()
 {
     for (short ili = 0; ili < 3; ili++)
@@ -48,20 +75,18 @@ void lisenses::read_line()
 {
     ret_i = 0;
 
- 
-
     for (int c = 0; c < 8; c++)
     {
         setConfigurate(c);
-       delay(1);
+        delay(1);
         for (int step = 0; step < 4; step++)
         {
             line_sensors[step * 8 + c].value += int(0.95 * (analogRead(slavPins[step]) - line_sensors[step * 8 + c].value));
             line_sensors[step * 8 + c].bool_value = (line_sensors[step * 8 + c].value > line_sensors[step * 8 + c].threshold_value);
-            
+
             if (line_sensors[step * 8 + c].bool_value)
             {
-                livectors[ret_i]= line_sensors[step * 8 + c].vector;
+                livectors[ret_i] = line_sensors[step * 8 + c].vector;
             }
             ret_i += line_sensors[step * 8 + c].bool_value;
 
@@ -80,39 +105,33 @@ void lisenses::read_line()
     Serial.print("End ");
 }
 
-line lisenses::get_line()
+vec lisenses::get_line()
 {
-    line ret;
+    vec ret;
 
     int lisin = 0;
     int licos = 0;
-    Serial.print(ret_i);
-    Serial.print(" ");
-  
+
+    if (ret_i == 0)
+    {
+        ret.angle = 0;
+        ret.lenght = -1;
+        return ret;
+    }
+
     for (int i = 0; i < ret_i; i++)
     {
 
         lisin += sin(livectors[i].angle * DEG_TO_RAD) * livectors[i].lenght;
         licos += cos(livectors[i].angle * DEG_TO_RAD) * livectors[i].lenght;
     }
-    Serial.print(lisin);
-    Serial.print(" ");
-    Serial.print(licos);
-    Serial.print(" ");
-    ret.angle = (atan2((lisin), (licos)) * DEG_TO_RAD);
+    ret.angle = (atan2((lisin), (licos)) * RAD_TO_DEG);
     ret.lenght = sqrt(lisin * lisin + licos * licos) / ret_i;
-    Serial.print(ret.angle);
-    Serial.print(" ");    
-    Serial.print(ret.lenght);
-    Serial.print(" ");
     return ret;
 }
 
-void lisenses::update()
+vec lisenses::update()
 {
     read_line();
-    line a = get_line();
-
-
-     delay(3);
+    return get_line();
 }

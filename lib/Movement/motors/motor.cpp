@@ -33,7 +33,7 @@ void motor::setSpeed(short speed)
     // for (int acs = time_last_change; acs < millis(); acs++){
     int iter = ((millis() - time_last_change))/4;
     for(int d_t = 0;d_t < iter;d_t++){ 
-    our_speed += int(sqrt(abs(speed-our_speed))*sign(speed-our_speed) * 0.8) ;}
+    our_speed += int(sqrt(abs(speed-our_speed))*sign(speed-our_speed) * acceleration_s) ;}
     digitalWrite(direction_pin1_, our_speed > 0);   
     digitalWrite(direction_pin2_, our_speed < 0);
     analogWrite(pwm_pin_, abs(our_speed));

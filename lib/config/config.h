@@ -17,5 +17,7 @@
 
 
 #define gyro sensors.gyro_.angle
+#define lineAngle sensors.li.angle
+#define lineLenght sensors.li.lenght
 
 #endif // _config_H_

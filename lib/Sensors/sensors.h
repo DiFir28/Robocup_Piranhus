@@ -24,6 +24,8 @@ public:
     Gyroscope gyro_;
     lisenses li;
 
+    vec line;
+
 private:
 };
 

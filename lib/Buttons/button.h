@@ -7,10 +7,8 @@
 class button 
 {
 public:
-    init(int pin);
-    init(int pin, void (*func)());
-    void interrupt_callback(void (*func)());
-
+    void init(int pin);
+    void init(int pin, void (*func)());
 
     bool condition;
     short value;

@@ -2,7 +2,7 @@
 #define _structs_H_
 
 #include <Arduino.h>
-struct line
+struct vec
 {
   short lenght;
   short angle;
@@ -17,16 +17,16 @@ struct coords
 
 class triangle
 {
-  line first;
-  line second;
-  line third;
+  vec first;
+  vec second;
+  vec third;
 };
 
 struct lisens
 {
   bool bool_value = 0;
   bool broken = 0;
-  line vector;
+  vec vector;
   short analog_value = 0;
   short value = 1;
   short max_value = 0;

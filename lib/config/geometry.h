@@ -16,9 +16,9 @@ inline short between(short first_angle_b, short second_angle_b)
     return output;
 }
 
-inline line bisector(line first, line second)
+inline vec bisector(vec first, vec second)
 {
-    line bisector_return;
+    vec bisector_return;
 
     bisector_return.angle = (first.angle + second.angle + 360) % 360 / 2 + 180 * (abs(first.angle - second.angle) > 180);
     bisector_return.lenght = 2 * first.lenght * second.lenght * cos(bisector_return.angle / 2 * DEG_TO_RAD) / (first.lenght + second.lenght);
@@ -26,9 +26,9 @@ inline line bisector(line first, line second)
     return bisector_return;
 }
 
-inline line height(line first, line second)
+inline vec height(vec first, vec second)
 {
-    line height_return, third;
+    vec height_return, third;
 
     short area = first.lenght * second.lenght * sin(abs(between(first.angle, second.angle)) * DEG_TO_RAD) / 2;
     third.lenght = sqrt(pow(first.lenght, 2) + pow(second.lenght, 2) - 2 * first.lenght * second.lenght * cos(abs(between(first.angle, second.angle)) * DEG_TO_RAD));
@@ -38,9 +38,9 @@ inline line height(line first, line second)
     return height_return;
 }
 
-inline line median(line first, line second)
+inline vec median(vec first, vec second)
 {
-    line median_return, third;
+    vec median_return, third;
 
     third.lenght = sqrt(pow(first.lenght, 2) + pow(second.lenght, 2) - 2 * first.lenght * second.lenght * cos(abs(between(first.angle, second.angle)) * DEG_TO_RAD));
     median_return.lenght = sqrt(2 * (first.lenght + second.lenght) - third.lenght) / 2;

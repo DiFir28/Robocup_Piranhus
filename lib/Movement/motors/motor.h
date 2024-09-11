@@ -14,7 +14,7 @@ public:
     void setSpeed(short speed);
     void go(int moving_direction, int turn_direction, int gyro_direction);
 
-    float acceleration_s = 0.2;
+    float acceleration_s = 0.7;
 
     short pwm_ = 0;
     short speed_ = 0;

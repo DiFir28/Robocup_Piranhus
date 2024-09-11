@@ -14,4 +14,5 @@ void Sensors::update()
 {
     IR.update();
     gyro_.update();
+    line = li.update();
 }
