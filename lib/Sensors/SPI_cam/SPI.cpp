@@ -1,6 +1,6 @@
 #include <SPI.h>
 // Initial SPI
-void camera::init()
+void spi::init()
 {
   pinMode(SS_PIN, OUTPUT);
   Serial.begin(BAUD_RATE);
@@ -9,11 +9,11 @@ void camera::init()
   SPI.setClockDivider(SPI_CLOCK_DIV16);
   SPI.setDataMode(SPI_MODE0);
   Serial.println(1);
-  Serial.print("SPI is ready")
+  Serial.print("SPI is ready");
 }
 
 // read data from camera
-void camera::read()
+void spi::read()
 {
   int32_t len = 0;
   char buff[CHAR_BUF] = { 0 };
@@ -28,5 +28,7 @@ void camera::read()
     while (len--) SPI.transfer(0);
   }
   digitalWrite(SS_PIN, HIGH);
-  Serial.print(buff);
+  for(i = 0; i < sizeof(buff) - 3; )
+  //Serial.print(buff);
+
 }
