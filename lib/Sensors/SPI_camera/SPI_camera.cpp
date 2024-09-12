@@ -10,6 +10,7 @@ void spi::init()
   SPI.setDataMode(SPI_MODE0);
   Serial.println(1);
   Serial.print("SPI is ready");
+  int data = [];
 }
 
 // read data from camera
@@ -28,7 +29,5 @@ void spi::read()
     while (len--) SPI.transfer(0);
   }
   digitalWrite(SS_PIN, HIGH);
- // for(i = 0; i < sizeof(buff) - 3; )
-  //Serial.print(buff);
-
+  Serial.print(buff);  
 }
