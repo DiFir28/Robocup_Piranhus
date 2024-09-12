@@ -38,9 +38,9 @@ void motor::setSpeed(short speed)
     digitalWrite(direction_pin2_, our_speed < 0);
     analogWrite(pwm_pin_, abs(our_speed));
     // time_last_change = millis();
-        Serial.print(" Motor active ");
+    Serial.print(" Motor active ");
     Serial.print(our_speed);
-   Serial.print(" ");
+    Serial.print(" ");
     Serial.print(sign(speed-our_speed));
     Serial.print(" ");
     Serial.print(our_speed - speed);
