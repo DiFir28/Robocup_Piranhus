@@ -1,27 +1,18 @@
 #include "config.h"
 #include "inits.h"
-
-Leds l;
-void but5()
-{
-  Serial.println("Новое пороговое: ");
-}
+#include <SPI.h>
+#include "config.h"
 
 void setup()
 {
   init();
-
-  Serial.begin(115200);  
-  pinMode(13, INPUT);
-  
-  
+  Serial.begin(19200);
+  delay(1000);
 }
 
-void loop(){
-  Serial.print(millis());
-  delay(10);
-  Serial.println("");
-  l.off();
-  l.on(millis()/1000%4,0,100,0);
+void loop()
+{
+  sensors.update();
 
+  delay(1);
 }

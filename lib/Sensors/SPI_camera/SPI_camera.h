@@ -1,17 +1,18 @@
-#ifndef _SPI_H_
-#define _SPI_H_
+#ifndef _SPI_camera_H_
+#define _SPI_camera_H_
 
 #include "config.h"
-#include <SPI.h>
 
+#include <SPI.h>
 //----------------------------------------------------------------
 
-class camera
+class spi_camera
 {
 public:
     void init();
-    void read_data_from_camera();
+    void update();
     char buff[128];
+    int ang[4]={0,0,0,0};
 private:
 
 };
