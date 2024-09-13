@@ -2,41 +2,37 @@
 
 void Gyroscope::init()
 {
-    GYRO_SERIAL_.begin(115200);
-    delay(3000);
-
-    GYRO_SERIAL_.write(0xA5);
-    GYRO_SERIAL_.write(0x54);
-    delay(1000);
-
-    GYRO_SERIAL_.write(0xA5);
-    GYRO_SERIAL_.write(0x55);
-    delay(1000);
-
-    GYRO_SERIAL_.write(0xA5);
-    GYRO_SERIAL_.write(0x53);
+    Serial.begin(115200);   // Serial monitor
+    Serial8.begin(115200);  // Serial GY25
+    delay(3000);            // Jeda 3 detik
+  // Kalibrasi Tilt
+    Serial8.write(0xA5);
+    Serial8.write(0x54);
+    delay(1000);  // Jeda sebelum kalibrasi heading
+  // Kalibrasi Heading
+    Serial8.write(0xA5);
+    Serial8.write(0x55);
+    delay(100);  // Jeda sebelum konfigurasi output
+  // Output ASCII
+    Serial8.write(0xA5);
+    Serial8.write(0x53);
+    delay(100);  // Jeda sebentar
 }
 
 void Gyroscope::update()
 {
-    GYRO_SERIAL_.write(0XA5);
-    GYRO_SERIAL_.write(0X51); // send it for each read
-    while (GYRO_SERIAL_.available())
-    {
-        Re_buf[counter] = (unsigned char)GYRO_SERIAL_.read();
-        if (counter == 0 && Re_buf[0] != 0xAA)
-            return;
-        counter++;
-        if (counter == 8) // package is complete
-        {
+    char tmp;  // Variabel temporary
+    while (Serial8.available()) {
+        tmp = Serial8.read();
+        buffer[counter++] = tmp;
+        if (tmp == '\n') {                                    // Langkah 1
+            buffer[counter] = 0;                      // Karakter terminator
+            heading = atof(strtok(buffer + 5, ","));  // Langkah 2-4
             counter = 0;
-            if (Re_buf[0] == 0xAA && Re_buf[7] == 0x55) // полученные данные правильны
-            {
-                angle = (int16_t)(Re_buf[1] << 8 | Re_buf[2]) / 100.00;
-            }
         }
-    }
-
-    Serial.print(" Gyro: ");
-    Serial.print(angle);
+  }
+  delay(1);
+  angle = heading;
+  Serial.print("Gyro");
+  Serial.print(angle);
 }

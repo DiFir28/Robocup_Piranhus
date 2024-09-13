@@ -11,7 +11,8 @@ public:
     void init();
     void update();
     float angle;
-
+    char buffer[50];
+    float heading;
 private:
     unsigned char Re_buf[8], counter = 0;
 };

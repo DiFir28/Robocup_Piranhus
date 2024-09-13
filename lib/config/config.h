@@ -2,7 +2,7 @@
 #define _config_H_
 
 #include <Arduino.h>
-
+#include "Wire.h"
 #define POWER 70.0 / 100 * 255
 #define POWER_ROT_MAX 150
 
@@ -24,5 +24,6 @@
 #define ballRet sensors.IR.ret
 #define ballAng sensors.IR.angle
 #define ballDis sensors.IR.distance
+
 
 #endif // _config_H_
