@@ -21,11 +21,12 @@ void IR_sensor::update(int g)
 
     angle = between(data[0], -g);
     distance = data[1]*dist_ir/100-5;
+    ret = (data[0] > 400);
 
     Serial.print(" Ball: ");
     Serial.print(angle);
     Serial.print(" ");
-    Serial.print(data[0]);
+    Serial.print(ret);
     Serial.print(" ");
     Serial.print(distance);
 }

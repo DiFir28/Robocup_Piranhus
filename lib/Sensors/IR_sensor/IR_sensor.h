@@ -14,6 +14,7 @@ public:
     int angle;
     int distance;
     short data[2];
+    bool ret;
 
 private:
     int address_;

@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 
-#define POWER 60.0 / 100 * 255
+#define POWER 80.0 / 100 * 255
 #define POWER_ROT_MAX 180
 
 #define GYRO_SERIAL_ Serial8
@@ -20,5 +20,9 @@
 #define gyro sensors.gyro_.angle
 #define lineAngle sensors.li.angle
 #define lineLenght sensors.li.lenght
+
+#define ballRet sensors.IR.ret
+#define ballAng sensors.IR.angle
+#define ballDis sensors.IR.distance
 
 #endif // _config_H_

@@ -15,7 +15,23 @@ void loop()
   Serial.print(millis());
   Serial.print(" - ");
   sensors.update();
-  
+  if (!ballRet){
+    if (abs(ballAng) > 90){
+      go(180 -  sign(ballAng) * atan2(30, ballDis)*RAD_TO_DEG, 0);
+      Serial.print(" ");
+      Serial.print(180 -  sign(ballAng) * atan2(30, ballDis)*RAD_TO_DEG);
+
+    }else{
+
+      go(ballAng + sign(ballAng)*atan2(30, ballDis)*RAD_TO_DEG, 0);
+      Serial.print(" ");
+      Serial.print(ballAng + sign(ballAng)*atan2(30, ballDis)*RAD_TO_DEG);
+    }
+    
+  }else{
+
+    
+  }
 
   Serial.println("");
   delay(1);
