@@ -3,8 +3,8 @@
 
 #include <Arduino.h>
 
-#define POWER 80.0 / 100 * 255
-#define POWER_ROT_MAX 180
+#define POWER 70.0 / 100 * 255
+#define POWER_ROT_MAX 150
 
 #define GYRO_SERIAL_ Serial8
 

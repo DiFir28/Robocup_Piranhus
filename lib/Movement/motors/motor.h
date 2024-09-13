@@ -22,8 +22,8 @@ public:
 
 private:
     int our_speed = 0;
-    float kp = 0.5;
-    float kd = 0;
+    float kp = 1.3;
+    float kd = 1;
     float turn_last_err, turn_up;
     short turn_err, turn_direction, moving_direction;
     int direction_pin1_;

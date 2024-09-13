@@ -37,4 +37,12 @@ void go(short direction_go, short turn_direction)
     motorD.go(direction_go, turn_direction, gyro);
 }
 
+void stop(){
+    motorA.setSpeed(0);
+    motorB.setSpeed(0);
+    motorC.setSpeed(0);
+    motorD.setSpeed(0);
+    
+    }
+
 #endif
