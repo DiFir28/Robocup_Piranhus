@@ -16,11 +16,12 @@ public:
     char buff[128];
     int ang[2]={0,0};
     int perpend;
+    int sum;
+
 private:
     int h_1, h_2, w_1, w_2, main_a, angl_3, angl_4;
     int rez_coord[3] = {0, 0, 0};
     int goals_angle[2] = {0, 0};
-
 };
 
 #endif // _SPI_H_

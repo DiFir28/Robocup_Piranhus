@@ -32,7 +32,7 @@ void spi_camera::update()
       SPI.transfer(0);
   }
   digitalWrite(SS_PIN, HIGH); 
-  for (int i = 0; i < 4; i++)
+  for (int i = 0; i < 2; i++)
   {
     char angch[5] = "";
     strncpy(angch, buff + i * 5, 4);
@@ -52,14 +52,22 @@ void spi_camera::update()
   }
 }
 
+
+
+
 int spi_camera::find_coords(int angle_1, int angle_2, float gyro_angle)
 {
-  angle_1 = between(angle_1, gyro_angle);
-  angle_2 = between(angle_2, gyro_angle);
-  main_a = between(angle_1, angle_2); //- gyro_angle
-  w_1 = 60 / sin(DEG_TO_RAD * (main_a)) * sin(DEG_TO_RAD * (angle_1)) * sin(DEG_TO_RAD * (angle_2)); 
-  h_1 = 30 - (abs(w_1) / tan(DEG_TO_RAD * abs(angle_1)));
-  h_2 = 30 + (abs(w_1) / tan(DEG_TO_RAD * abs(angle_2)));
+  for (int i = 0; i < 5; i++)  {
+    angle_1 = between(angle_1, gyro_angle);
+    angle_2 = between(angle_2, gyro_angle);
+    main_a = between(angle_1, angle_2); //- gyro_angle
+    w_1 += 60 / sin(DEG_TO_RAD * (main_a)) * sin(DEG_TO_RAD * (angle_1)) * sin(DEG_TO_RAD * (angle_2)); 
+  }
+  w_1 = w_1 / 5;
+  h_1 = 30 - abs(w_1) / tan(DEG_TO_RAD * abs(angle_1));
+  h_2 = 30 + abs(w_1) / tan(DEG_TO_RAD * abs(angle_2));
+
+
 
   rez_coord[0] = {w_1};
   rez_coord[1] = {30 - h_1};
@@ -78,5 +86,5 @@ int spi_camera::find_coords(int angle_1, int angle_2, float gyro_angle)
   Serial.print("   ");
   Serial.print(h_2);
   Serial.print("   ");
-  return ;
+  return w_1;
 }
