@@ -3,7 +3,6 @@
 
 #include "config.h"
 
-
 class button 
 {
 public:
@@ -15,7 +14,6 @@ public:
 
 private:
     int pin_;
-    
 };
 
 #endif // _button_H_
