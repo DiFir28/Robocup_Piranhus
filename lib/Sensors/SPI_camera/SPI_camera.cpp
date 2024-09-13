@@ -59,6 +59,13 @@ int spi_camera::find_coords(int gyro_angle, int angle_1, int angle_2)
   goal_angles[2] = 90 - min(abs(angle_1), abs(angle_2));
   gip = 60 / sin(goal_angles[0]) * sin(goal_angles[2]);
   perpend = gip / 1 * sin(goal_angles[1]);
-  Serial.print(*goal_angles);
+  Serial.print(goal_angles[0]);
+  Serial.print("\t");
+  Serial.print(goal_angles[1]);
+  Serial.print("\t");
+  Serial.print(goal_angles[2]);
+  Serial.print("\t");
+  //Serial.print("\t");
+ // Serial.println(perpend);
   return perpend;
 }

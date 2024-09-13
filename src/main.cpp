@@ -13,7 +13,7 @@ void loop()
 {
   // Serial.print(millis());
   // Serial.print(" - ");
-  // sensors.update();
+  sensors.update();
   // if (!ballRet){
   //   if (abs(ballAng) > 90){
   //     go(180 -  sign(ballAng) * atan2(30, ballDis)*RAD_TO_DEG, 0);
