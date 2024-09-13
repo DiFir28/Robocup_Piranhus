@@ -19,6 +19,7 @@ void Gyroscope::init()
     delay(100);  // Jeda sebentar
 }
 
+
 void Gyroscope::update()
 {
     char tmp;  // Variabel temporary

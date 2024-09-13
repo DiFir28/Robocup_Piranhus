@@ -34,5 +34,5 @@ void loop()
   //   }
   // }
   Serial.println("");
-  // delay(1);
+  delay(1);
 }
