@@ -52,12 +52,13 @@ void spi_camera::update()
   // }
 }
 
-int spi_camera::find_coords(float gyro_angle, int angle_1, int angle_2)
+int spi_camera::find_coords(int gyro_angle, int angle_1, int angle_2)
 {
   goal_angles[0] = between(angle_1, angle_2);
   goal_angles[1] = 90 - max(abs(angle_1), abs(angle_2));
   goal_angles[2] = 90 - min(abs(angle_1), abs(angle_2));
   gip = 60 / sin(goal_angles[0]) * sin(goal_angles[2]);
   perpend = gip / 1 * sin(goal_angles[1]);
+  Serial.print(*goal_angles);
   return perpend;
 }

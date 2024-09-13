@@ -1,6 +1,5 @@
 #include "config.h"
 #include "inits.h"
-#include <SPI.h>
 #include "config.h"
 
 void setup()
@@ -12,27 +11,27 @@ void setup()
 
 void loop()
 {
-  Serial.print(millis());
-  Serial.print(" - ");
-  sensors.update();
-  if (!ballRet){
-    if (abs(ballAng) > 90){
-      go(180 -  sign(ballAng) * atan2(30, ballDis)*RAD_TO_DEG, 0);
-      Serial.print(" ");
-      Serial.print(180 -  sign(ballAng) * atan2(30, ballDis)*RAD_TO_DEG);
+  // Serial.print(millis());
+  // Serial.print(" - ");
+  // sensors.update();
+  // if (!ballRet){
+  //   if (abs(ballAng) > 90){
+  //     go(180 -  sign(ballAng) * atan2(30, ballDis)*RAD_TO_DEG, 0);
+  //     Serial.print(" ");
+  //     Serial.print(180 -  sign(ballAng) * atan2(30, ballDis)*RAD_TO_DEG);
 
-    }else{
+  //   }else{
 
-      go(ballAng + sign(ballAng)*atan2(30, ballDis)*RAD_TO_DEG, 0);
-      Serial.print(" ");
-      Serial.print(ballAng + sign(ballAng)*atan2(30, ballDis)*RAD_TO_DEG);
-    }
+  //     go(ballAng + sign(ballAng)*atan2(30, ballDis)*RAD_TO_DEG, 0);
+  //     Serial.print(" ");
+  //     Serial.print(ballAng + sign(ballAng)*atan2(30, ballDis)*RAD_TO_DEG);
+  //   }
     
-  }else{
+  // }else{
 
     
-  }
-
+  // }
+  sensors.camera.find_coords(gyro, sensors.camera.ang[0], sensors.camera.ang[1]);
   Serial.println("");
   delay(1);
 }
