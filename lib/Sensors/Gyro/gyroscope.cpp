@@ -30,7 +30,7 @@ void Gyroscope::update()
         if (counter == 8) // package is complete
         {
             counter = 0;
-            if (Re_buf[0] == 0xAA && Re_buf[7] == 0x55) // полученные данны правильны
+            if (Re_buf[0] == 0xAA && Re_buf[7] == 0x55) // полученные данные правильны
             {
                 angle = (int16_t)(Re_buf[1] << 8 | Re_buf[2]) / 100.00;
             }

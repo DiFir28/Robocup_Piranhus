@@ -10,7 +10,6 @@ void spi_camera::init()
   SPI.setClockDivider(SPI_CLOCK_DIV16);
   SPI.setDataMode(SPI_MODE0);
   delay(1000);
-  // int datas[4];
   Serial.print("SPI is ready");
 }
 
@@ -44,11 +43,19 @@ void spi_camera::update()
     for (int i = 0; i < 4; i++){
     Serial.print("  ");
     Serial.print(ang[i]);}
-  
-
   // for (int i = 0; i < 4; i++)
   // {
   //   Serial.print("  ");
   //   Serial.print(ang[i]);
   // }
+}
+
+void spi_camera::find_coords(float gyro_angle, int angle_1, int angle_2){
+  goal_angles[0] = between(angle_1, angle_2);
+  goal_angles[1] = 90 - goal_angles[0];
+  goal_angles[2] = 180 - (goal_angles[0] + goal_angles[1]);
+  gip = 60 / sin(goal_angles[0]) * sin(goal_angles[2]);
+  perpend = gip / 1 * sin(goal_angles[1]);
+  return perpend;
+
 }
