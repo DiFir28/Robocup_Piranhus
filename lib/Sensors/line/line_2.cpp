@@ -102,7 +102,6 @@ void lisenses::read_line()
             // Serial.println("}");
         }
     }
-    Serial.print("End ");
 }
 
 vec lisenses::get_line()
@@ -111,11 +110,16 @@ vec lisenses::get_line()
 
     int lisin = 0;
     int licos = 0;
+    Serial.print(" Line: ");
 
     if (ret_i == 0)
     {
         ret.angle = 0;
         ret.lenght = -1;
+        Serial.print(ret.angle);
+        Serial.print(" ");
+        Serial.print(ret.lenght);
+
         return ret;
     }
 
@@ -127,6 +131,9 @@ vec lisenses::get_line()
     }
     ret.angle = (atan2((lisin), (licos)) * RAD_TO_DEG);
     ret.lenght = sqrt(lisin * lisin + licos * licos) / ret_i;
+    Serial.print(ret.angle);
+    Serial.print(" ");
+    Serial.print(ret.lenght);
     return ret;
 }
 

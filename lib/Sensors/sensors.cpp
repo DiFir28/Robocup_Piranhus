@@ -13,8 +13,8 @@ void Sensors::init()
 // Update sensor data
 void Sensors::update()
 {
-    IR.update();
     gyro_.update();
+    IR.update(gyro_.angle);
     line = li.update();
     camera.update();
 }
