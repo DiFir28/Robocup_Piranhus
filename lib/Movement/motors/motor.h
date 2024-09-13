@@ -3,7 +3,6 @@
 
 #include "config.h"
 
-
 //================================================================
 
 class motor
@@ -14,23 +13,20 @@ public:
     void setSpeed(short speed);
     void go(int moving_direction, int turn_direction, int gyro_direction);
 
-    float acceleration_s = 0.7;
-
-    short pwm_ = 0;
-    short speed_ = 0;
+    float acceleration_s = 0.6;
     unsigned long time_last_change = 0;
 
 private:
+
+    int acceleration(int);
     int our_speed = 0;
-    float kp = 1.5;
-    float kd = 0;
+
+    float kp = 1.3;
     float turn_last_err, turn_up;
     short turn_err, turn_direction, moving_direction;
-    int direction_pin1_;
-    int direction_pin2_;
-    int pwm_pin_;
+
+    int direction_pin1_, direction_pin2_, pwm_pin_;
     int motor_angle_;
-    int k_reverse_ = 1;
 };
 
 #endif // _motor_H_
