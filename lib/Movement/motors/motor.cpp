@@ -51,9 +51,9 @@ void motor::setSpeed(short speed)
 void motor::go(int moving_direction, int turn_direction, int gyro_direction)
 {
     turn_err = between(turn_direction, gyro_direction);
-    turn_up = (turn_err * kp + (turn_last_err - turn_err)*kd)/ POWER_ROT_MAX;
+    turn_up = constrain(turn_err * kp + (turn_last_err - turn_err) * kd, -POWER_ROT_MAX, POWER_ROT_MAX);
     moving_direction = between(moving_direction, gyro_direction);
-    setSpeed( constrain(POWER * (turn_up + cos((moving_direction + motor_angle_) * DEG_TO_RAD)),-255,255));
+    setSpeed( constrain(turn_up + POWER * (cos((moving_direction + motor_angle_) * DEG_TO_RAD)),-255,255));
     // Serial.print(" Motor active ");
     // Serial.print(POWER * ( turn_up+ cos((moving_direction + motor_angle_) * DEG_TO_RAD)));
     // Serial.print(" ");
@@ -62,3 +62,4 @@ void motor::go(int moving_direction, int turn_direction, int gyro_direction)
     // Serial.print(cos((moving_direction + motor_angle_) * DEG_TO_RAD));
      turn_last_err = turn_err;
 }
+
