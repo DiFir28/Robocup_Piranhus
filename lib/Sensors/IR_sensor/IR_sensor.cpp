@@ -1,5 +1,5 @@
 #include "IR_sensor.h"
-
+#include "geometry.h"
 // Initial IR sensor
 void IR_sensor::init(int address)
 {
@@ -8,7 +8,7 @@ void IR_sensor::init(int address)
 }
 
 // Update IR sensor
-void IR_sensor::update()
+void IR_sensor::update(int g)
 {
     Wire.requestFrom(IR_SENSOR_ADDRESS, 2 * sizeof(short));
 
@@ -19,8 +19,13 @@ void IR_sensor::update()
     }
     memcpy(&data, buffer, 2 * sizeof(short));
 
+    angle = between(data[0], -g);
+    distance = data[1]*dist_ir/100-5;
+
     Serial.print(" Ball: ");
+    Serial.print(angle);
+    Serial.print(" ");
     Serial.print(data[0]);
     Serial.print(" ");
-    Serial.print(data[1]*5.5-5);
+    Serial.print(distance);
 }

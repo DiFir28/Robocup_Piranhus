@@ -39,11 +39,12 @@ void spi_camera::update()
     char angch[5] = "";
     strncpy(angch, buff + i * 5, 4);
     ang[i] = atoi(angch);}
-    Serial.print("  ");
-    Serial.print(buff);
+    // Serial.print("  ");
+    // Serial.print(buff);
     for (int i = 0; i < 4; i++){
-    Serial.print("  ");
-    Serial.print(ang[i]);}
+    // Serial.print("  ");
+    // Serial.print(ang[i]);
+    }
   
 
   // for (int i = 0; i < 4; i++)

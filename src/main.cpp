@@ -12,7 +12,11 @@ void setup()
 
 void loop()
 {
+  Serial.print(millis());
+  Serial.print(" - ");
   sensors.update();
+  
 
+  Serial.println("");
   delay(1);
 }

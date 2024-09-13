@@ -15,6 +15,7 @@
 #define BAUD_RATE 19200
 #define CHAR_BUF 128
 
+#define dist_ir 5.5
 
 #define gyro sensors.gyro_.angle
 #define lineAngle sensors.li.angle

@@ -10,7 +10,7 @@ class IR_sensor
 {
 public:
     void init(int address);
-    void update();
+    void update(int);
     int angle;
     int distance;
     short data[2];
