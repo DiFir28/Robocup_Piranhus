@@ -31,41 +31,52 @@ void spi_camera::update()
     while (len--)
       SPI.transfer(0);
   }
-  digitalWrite(SS_PIN, HIGH);
-
+  digitalWrite(SS_PIN, HIGH); 
   for (int i = 0; i < 4; i++)
   {
     char angch[5] = "";
     strncpy(angch, buff + i * 5, 4);
-    ang[i] = atoi(angch);}
+    ang[i] = atoi(angch);
+  }
     // Serial.print("  ");
-    // Serial.print(buff);
+  Serial.print(" buff: ");
     //for (int i = 0; i < 4; i++){
     //Serial.print("  ");
     //Serial.print(ang[i]);}
   
 
-  // for (int i = 0; i < 4; i++)
-  // {
-  //   Serial.print("  ");
-  //   Serial.print(ang[i]);
-  // }
+   for (int i = 0; i < 2; i++)
+  {
+    Serial.print(" ");
+    Serial.print(ang[i]);
+  }
 }
 
-int spi_camera::find_coords(int gyro_angle, int angle_1, int angle_2)
+int spi_camera::find_coords(int angle_1, int angle_2, float gyro_angle)
 {
-  goal_angles[0] = between(angle_1, angle_2);
-  goal_angles[1] = 90 - max(abs(angle_1), abs(angle_2));
-  goal_angles[2] = 90 - min(abs(angle_1), abs(angle_2));
-  gip = 60 / sin(goal_angles[0]) * sin(goal_angles[2]);
-  perpend = gip / 1 * sin(goal_angles[1]);
-  Serial.print(goal_angles[0]);
-  Serial.print("\t");
-  Serial.print(goal_angles[1]);
-  Serial.print("\t");
-  Serial.print(goal_angles[2]);
-  Serial.print("\t");
-  //Serial.print("\t");
- // Serial.println(perpend);
-  return perpend;
+  angle_1 = between(angle_1, gyro_angle);
+  angle_2 = between(angle_2, gyro_angle);
+  main_a = between(angle_1, angle_2); //- gyro_angle
+  w_1 = 60 / sin(DEG_TO_RAD * (main_a)) * sin(DEG_TO_RAD * (angle_1)) * sin(DEG_TO_RAD * (angle_2)); 
+  h_1 = 30 - (abs(w_1) / tan(DEG_TO_RAD * abs(angle_1)));
+  h_2 = 30 + (abs(w_1) / tan(DEG_TO_RAD * abs(angle_2)));
+
+  rez_coord[0] = {w_1};
+  rez_coord[1] = {30 - h_1};
+  // Serial.print("    angles: ");
+  // Serial.print(angle_1);
+  // Serial.print("  ");
+  // Serial.print( angle_2);
+  // Serial.print("  ");
+  // Serial.print(main_a);
+  Serial.print("  ");
+  Serial.print("    height: ");
+  // Serial.print("   ");
+  Serial.print(w_1);
+  Serial.print("   ");
+  Serial.print(h_1);
+  Serial.print("   ");
+  Serial.print(h_2);
+  Serial.print("   ");
+  return ;
 }

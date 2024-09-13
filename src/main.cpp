@@ -31,7 +31,7 @@ void loop()
 
     
   // }
-  sensors.camera.find_coords(gyro, sensors.camera.ang[0], sensors.camera.ang[1]);
+  sensors.camera.find_coords(sensors.camera.ang[0], sensors.camera.ang[1], gyro);
   Serial.println("");
   delay(1);
 }
