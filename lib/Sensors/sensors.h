@@ -8,6 +8,7 @@
 #include "line/line_2.h"
 #include "Gyro/gyroscope.h"
 #include "IR_sensor/IR_sensor.h"
+#include "SPI_camera/spi_camera.h"
 
 //----------------------------------------------------------------
 // Sensors class declaration
@@ -23,7 +24,7 @@ public:
     IR_sensor IR;
     Gyroscope gyro_;
     lisenses li;
-
+    spi_camera camera;
     vec line;
 
 private:

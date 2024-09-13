@@ -16,5 +16,6 @@ void a(){
     b5.init(5,a);
     leds.init(4,31,39);
     motors_init();
+    Serial.println("Init end");
  }
 
