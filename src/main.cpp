@@ -13,7 +13,7 @@ void loop()
 {
   // Serial.print(millis());
   // Serial.print(" - ");
-  // sensors.update();
+  sensors.update();
   // if (!ballRet){
   //   if (abs(ballAng) > 90){
   //     go(180 -  sign(ballAng) * atan2(30, ballDis)*RAD_TO_DEG, 0);
@@ -31,7 +31,7 @@ void loop()
 
     
   // }
-  sensors.camera.find_coords(gyro, sensors.camera.ang[0], sensors.camera.ang[1]);
+  sensors.camera.find_coords(sensors.camera.ang[0], sensors.camera.ang[1], gyro);
   Serial.println("");
   delay(1);
 }
