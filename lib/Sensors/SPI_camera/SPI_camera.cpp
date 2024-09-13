@@ -40,7 +40,7 @@ void spi_camera::update()
     ang[i] = atoi(angch);}
     // Serial.print("  ");
     // Serial.print(buff);
-    for (int i = 0; i < 4; i++){
+    //for (int i = 0; i < 4; i++){
     //Serial.print("  ");
     //Serial.print(ang[i]);}
   
@@ -52,12 +52,12 @@ void spi_camera::update()
   // }
 }
 
-void spi_camera::find_coords(float gyro_angle, int angle_1, int angle_2){
+int spi_camera::find_coords(float gyro_angle, int angle_1, int angle_2)
+{
   goal_angles[0] = between(angle_1, angle_2);
   goal_angles[1] = 90 - goal_angles[0];
   goal_angles[2] = 180 - (goal_angles[0] + goal_angles[1]);
   gip = 60 / sin(goal_angles[0]) * sin(goal_angles[2]);
   perpend = gip / 1 * sin(goal_angles[1]);
   return perpend;
-
 }

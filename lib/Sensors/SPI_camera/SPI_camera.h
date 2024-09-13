@@ -12,7 +12,7 @@ class spi_camera
 public:
     void init();
     void update();
-    void find_coords(float, int, int);
+    int find_coords(float, int, int);
     char buff[128];
     int ang[4]={0,0,0,0};
 private:
