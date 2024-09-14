@@ -16,5 +16,5 @@ void Sensors::update()
     gyro_.update();
     IR.update(gyro_.angle);
     line = li.update();
-    camera.update();
+    camera.update(0);
 }

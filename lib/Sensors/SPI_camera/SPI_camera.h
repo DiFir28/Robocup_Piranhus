@@ -11,12 +11,15 @@ class spi_camera
 {
 public:
     void init();
-    void update();
+    void update(bool); //0 - синий, 1 - жёлтый
     int find_coords(int, int, float);
+    int help_gyro();
     char buff[128];
     int ang[2]={0,0};
+    int c_g;
     int perpend;
     int sum;
+    bool fl;
 
 private:
     int h_1, h_2, w_1, w_2, main_a, angl_3, angl_4;

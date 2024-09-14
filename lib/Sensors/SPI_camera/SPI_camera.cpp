@@ -13,8 +13,45 @@ void spi_camera::init()
   Serial.print("SPI is ready");
 }
 
+
+
+int spi_camera::find_coords(int angle_1, int angle_2, float gyro_angle)
+{
+  for (int i = 0; i < 5; i++)  {
+    angle_1 = between(angle_1, gyro_angle);
+    angle_2 = between(angle_2, gyro_angle);
+    main_a = between(angle_1, angle_2); //- gyro_angle
+    w_1 += 60 / sin(DEG_TO_RAD * (main_a)) * sin(DEG_TO_RAD * (angle_1)) * sin(DEG_TO_RAD * (angle_2)); 
+  }
+  w_1 = w_1 / 5;
+  h_1 = 30 - abs(w_1) / tan(DEG_TO_RAD * abs(angle_1));
+  h_2 = 30 + abs(w_1) / tan(DEG_TO_RAD * abs(angle_2));
+
+
+
+  rez_coord[0] = {w_1};
+  rez_coord[1] = {30 - h_1};
+  // Serial.print("    angles: ");
+  // Serial.print(angle_1);
+  // Serial.print("  ");
+  // Serial.print( angle_2);
+  // Serial.print("  ");
+  // Serial.print(main_a);
+  Serial.print("  ");
+  Serial.print("    height: ");
+  // Serial.print("   ");
+  Serial.print(w_1);
+  Serial.print("   ");
+  Serial.print(h_1);
+  Serial.print("   ");
+  Serial.print(h_2);
+  Serial.print("   ");
+  return w_1;
+}
+
+
 // read data from camera
-void spi_camera::update()
+void spi_camera::update(bool flag)
 {
   int32_t len = 0;
   char buff[CHAR_BUF] = {0};
@@ -50,41 +87,7 @@ void spi_camera::update()
     Serial.print(" ");
     Serial.print(ang[i]);
   }
-}
-
-
-
-
-int spi_camera::find_coords(int angle_1, int angle_2, float gyro_angle)
-{
-  for (int i = 0; i < 5; i++)  {
-    angle_1 = between(angle_1, gyro_angle);
-    angle_2 = between(angle_2, gyro_angle);
-    main_a = between(angle_1, angle_2); //- gyro_angle
-    w_1 += 60 / sin(DEG_TO_RAD * (main_a)) * sin(DEG_TO_RAD * (angle_1)) * sin(DEG_TO_RAD * (angle_2)); 
-  }
-  w_1 = w_1 / 5;
-  h_1 = 30 - abs(w_1) / tan(DEG_TO_RAD * abs(angle_1));
-  h_2 = 30 + abs(w_1) / tan(DEG_TO_RAD * abs(angle_2));
-
-
-
-  rez_coord[0] = {w_1};
-  rez_coord[1] = {30 - h_1};
-  // Serial.print("    angles: ");
-  // Serial.print(angle_1);
-  // Serial.print("  ");
-  // Serial.print( angle_2);
-  // Serial.print("  ");
-  // Serial.print(main_a);
-  Serial.print("  ");
-  Serial.print("    height: ");
-  // Serial.print("   ");
-  Serial.print(w_1);
-  Serial.print("   ");
-  Serial.print(h_1);
-  Serial.print("   ");
-  Serial.print(h_2);
-  Serial.print("   ");
-  return w_1;
+  c_g =  360 - (ang[0] * (flag == 0) + ang[1] * (flag == 1));
+  Serial.print(" help gyro: ");
+  Serial.print(c_g);
 }

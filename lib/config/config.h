@@ -25,5 +25,4 @@
 #define ballAng sensors.IR.angle
 #define ballDis sensors.IR.distance
 
-
 #endif // _config_H_
