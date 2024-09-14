@@ -30,7 +30,7 @@ void acceleration(float acc)
 
 void go(short direction_go, short turn_direction)
 {
-    
+    Serial.print("EEE");
     motorA.go(direction_go, turn_direction, gyro);
     motorB.go(direction_go, turn_direction, gyro);
     motorC.go(direction_go, turn_direction, gyro);       

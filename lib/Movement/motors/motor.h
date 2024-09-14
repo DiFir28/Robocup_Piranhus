@@ -21,7 +21,7 @@ private:
     int acceleration(int);
     int our_speed = 0;
 
-    float kp = 1.3;
+    float kp = 0.6;
     float turn_last_err, turn_up;
     short turn_err, turn_direction, moving_direction;
 
