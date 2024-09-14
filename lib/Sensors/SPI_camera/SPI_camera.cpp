@@ -3,8 +3,7 @@
 // Initial SPI
 void spi_camera::init()
 {
-  pinMode(SS_PIN, OUTPUT);
-  Serial.begin(BAUD_RATE);
+  pinMode(10, OUTPUT);
   SPI.begin();
   SPI.setBitOrder(MSBFIRST);
   SPI.setClockDivider(SPI_CLOCK_DIV16);
@@ -12,46 +11,8 @@ void spi_camera::init()
   delay(1000);
   Serial.print("SPI is ready");
 }
-
-
-
-int spi_camera::find_coords(int angle_1, int angle_2, float gyro_angle)
-{
-  for (int i = 0; i < 5; i++)  {
-    angle_1 = between(angle_1, gyro_angle);
-    angle_2 = between(angle_2, gyro_angle);
-    main_a = between(angle_1, angle_2); //- gyro_angle
-    w_1 += 60 / sin(DEG_TO_RAD * (main_a)) * sin(DEG_TO_RAD * (angle_1)) * sin(DEG_TO_RAD * (angle_2)); 
-  }
-  w_1 = w_1 / 5;
-  h_1 = 30 - abs(w_1) / tan(DEG_TO_RAD * abs(angle_1));
-  //h_2 = 30 + abs(w_1) / tan(DEG_TO_RAD * abs(angle_2));
-
-
-
-  rez_coord[0] = {w_1};
-  rez_coord[1] = {30 - h_1};
-  // Serial.print("    angles: ");
-  // Serial.print(angle_1);
-  // Serial.print("  ");
-  // Serial.print( angle_2);
-  // Serial.print("  ");
-  // Serial.print(main_a);
-  Serial.print("  ");
-  Serial.print("    height: ");
-  //Serial.print("   ");
-  Serial.print(w_1);
-  Serial.print("до синих");
-  Serial.print(h_1);
-  Serial.print("до жёлтых");
-  Serial.print(h_2);
-  Serial.print("   ");
-  return w_1;
-}
-
-
 // read data from camera
-void spi_camera::update(bool flag)
+void spi_camera::update()
 {
   int32_t len = 0;
   char buff[CHAR_BUF] = {0};
@@ -73,21 +34,24 @@ void spi_camera::update(bool flag)
   {
     char angch[5] = "";
     strncpy(angch, buff + i * 5, 4);
-    goal_angl[i] = atoi(angch);
+    goal_ans[i] = atoi(angch);
   }
-    // Serial.print("  ");
-  Serial.print(" buff: ");
-    //for (int i = 0; i < 4; i++){
-    //Serial.print("  ");
-    //Serial.print(ang[i]);}
-  
+}
 
-  //  for (int i = 0; i < 2; i++)
-  // {
-  //   Serial.print(" ");
-  //   Serial.print(ang[i]);
-  // }
-  //c_g =  360 - (ang[0] * (flag == 0) + ang[1] * (flag == 1));
-  //Serial.print(" help gyro: ");
-  //Serial.print(c_g);
+void spi_camera::coords_find(int gyro_ang, bool goal){
+  //угол до центра ворот с поправкой на gyro
+  perf_ang[0] = between(goal_ans[0], gyro_ang); //cиние
+  perf_ang[1] = between(goal_ans[1], gyro_ang); //жёлтые
+  perf_ang[2] = between(perf_ang[0], perf_ang[1]); //угол между центрами ворот
+  our_y = 60 / sin(DEG_TO_RAD * perf_ang[2]) * sin(DEG_TO_RAD * perf_ang[0]) * sin(DEG_TO_RAD * perf_ang[1]);
+  our_x = abs(our_y) / tan(DEG_TO_RAD * abs(perf_ang[goal]));
+  
+  Serial.print(" angles to goals: ");
+  Serial.print(perf_ang[0]);
+  Serial.print("  ");
+  Serial.print(perf_ang[1]);
+  Serial.print(" coords: ");
+  Serial.print(our_y);
+   Serial.print("  ");
+  Serial.print(our_x);
 }

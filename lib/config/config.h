@@ -25,6 +25,7 @@
 #define ballAng sensors.IR.angle
 #define ballDis sensors.IR.distance
 
-#define blue sensors.camera.goal_angl[0]
-#define yell sensors.camera.goal_angl[1]
+#define camera sensors.camera_
+#define blue sensors.camera.goal_ans[0]
+#define yell sensors.camera.goal_ans[1]
 #endif // _config_H_

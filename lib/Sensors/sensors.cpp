@@ -7,7 +7,7 @@ void Sensors::init()
     IR.init(IR_SENSOR_ADDRESS);
     gyro_.init();
     li.init();
-    camera.init();
+    camera_.init();
 }
 
 // Update sensor data
@@ -16,5 +16,5 @@ void Sensors::update()
     gyro_.update();
     IR.update(gyro_.angle);
     line = li.update();
-    camera.update(0);
+    camera_.update();
 }

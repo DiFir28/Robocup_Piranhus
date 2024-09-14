@@ -24,7 +24,7 @@ public:
     IR_sensor IR;
     Gyroscope gyro_;
     lisenses li;
-    spi_camera camera;
+    spi_camera camera_;
     vec line;
 
 private:
