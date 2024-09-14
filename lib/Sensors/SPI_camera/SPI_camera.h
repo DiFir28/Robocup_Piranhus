@@ -15,7 +15,7 @@ public:
     int find_coords(int, int, float);
     int help_gyro();
     char buff[128];
-    int ang[2]={0,0};
+    int goal_angl[2]={0,0};
     int c_g;
     int perpend;
     int sum;

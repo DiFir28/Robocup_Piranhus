@@ -69,11 +69,11 @@ void spi_camera::update(bool flag)
       SPI.transfer(0);
   }
   digitalWrite(SS_PIN, HIGH); 
-  for (int i = 0; i < 2; i++)
+  for (int i = 0; i < 2; i++) 
   {
     char angch[5] = "";
     strncpy(angch, buff + i * 5, 4);
-    ang[i] = atoi(angch);
+    goal_angl[i] = atoi(angch);
   }
     // Serial.print("  ");
   Serial.print(" buff: ");
