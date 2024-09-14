@@ -25,7 +25,7 @@ int spi_camera::find_coords(int angle_1, int angle_2, float gyro_angle)
   }
   w_1 = w_1 / 5;
   h_1 = 30 - abs(w_1) / tan(DEG_TO_RAD * abs(angle_1));
-  h_2 = 30 + abs(w_1) / tan(DEG_TO_RAD * abs(angle_2));
+  //h_2 = 30 + abs(w_1) / tan(DEG_TO_RAD * abs(angle_2));
 
 
 
@@ -39,11 +39,11 @@ int spi_camera::find_coords(int angle_1, int angle_2, float gyro_angle)
   // Serial.print(main_a);
   Serial.print("  ");
   Serial.print("    height: ");
-  // Serial.print("   ");
+  //Serial.print("   ");
   Serial.print(w_1);
-  Serial.print("   ");
+  Serial.print("до синих");
   Serial.print(h_1);
-  Serial.print("   ");
+  Serial.print("до жёлтых");
   Serial.print(h_2);
   Serial.print("   ");
   return w_1;
@@ -82,12 +82,12 @@ void spi_camera::update(bool flag)
     //Serial.print(ang[i]);}
   
 
-   for (int i = 0; i < 2; i++)
-  {
-    Serial.print(" ");
-    Serial.print(ang[i]);
-  }
-  c_g =  360 - (ang[0] * (flag == 0) + ang[1] * (flag == 1));
-  Serial.print(" help gyro: ");
-  Serial.print(c_g);
+  //  for (int i = 0; i < 2; i++)
+  // {
+  //   Serial.print(" ");
+  //   Serial.print(ang[i]);
+  // }
+  //c_g =  360 - (ang[0] * (flag == 0) + ang[1] * (flag == 1));
+  //Serial.print(" help gyro: ");
+  //Serial.print(c_g);
 }
