@@ -26,12 +26,12 @@ int motor::acceleration(int newSpeed)
 void motor::setSpeed(short speed)
 {
 
-    digitalWrite(direction_pin1_, our_speed > 0);
-    digitalWrite(direction_pin2_, our_speed < 0);
-    analogWrite(pwm_pin_, abs(our_speed));
+    digitalWrite(direction_pin1_, speed > 0);
+    digitalWrite(direction_pin2_, speed < 0);
+    analogWrite(pwm_pin_, abs(speed));
 
-    // Serial.print(" Motor active ");
-    // Serial.print(our_speed);
+    Serial.print(" Motor active ");
+    Serial.print(speed);
     // Serial.print(" ");
     // Serial.print(sign(speed-our_speed));
     // Serial.print(" ");
@@ -46,9 +46,9 @@ void motor::go(int moving_direction, int turn_direction, int gyro_direction)
     setSpeed(constrain(turn_up + acceleration(POWER * cos((moving_direction + motor_angle_) * DEG_TO_RAD)), -255, 255));
     // Serial.print(" Motor active ");
     // Serial.print(POWER * ( turn_up+ cos((moving_direction + motor_angle_) * DEG_TO_RAD)));
-    // Serial.print(" ");
-    // Serial.print(turn_up);
-    // Serial.print(" ");
+    Serial.print(" ");
+    Serial.print(turn_up);
+    Serial.print(" ");
     // Serial.print(cos((moving_direction + motor_angle_) * DEG_TO_RAD));
     turn_last_err = turn_err;
 }

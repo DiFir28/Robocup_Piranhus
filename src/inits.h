@@ -11,11 +11,16 @@ void a(){
 }
 
  void init(){
+    leds.init(4,31,39);
+    leds.on(0,0,50,0);
     sensors.init();
+    leds.on(1,0,50,0);
     sensors.gyro_.update();
     b5.init(5,a);
-    leds.init(4,31,39);
+    leds.on(2,0,50,0);
+    
     motors_init();
-    Serial.println("Init end");
+    leds.on(3,0,50,0);
+    Serial.println(" Init end");
  }
 
