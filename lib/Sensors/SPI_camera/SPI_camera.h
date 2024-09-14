@@ -4,6 +4,7 @@
 
 #include "config.h"
 #include "geometry.h"
+#include "structs.h"
 
 //----------------------------------------------------------------
 
@@ -14,7 +15,7 @@ public:
     void update();
     void coords_find(int, bool); //0 - синие, 1 - жёлтые
     int goal_ans[2];
-    int our_y, our_x;
+    coords crds;
 private:
     int perf_ang[3];
 };

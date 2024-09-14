@@ -40,18 +40,19 @@ void spi_camera::update()
 
 void spi_camera::coords_find(int gyro_ang, bool goal){
   //угол до центра ворот с поправкой на gyro
-  perf_ang[0] = between(goal_ans[0], gyro_ang); //cиние
-  perf_ang[1] = between(goal_ans[1], gyro_ang); //жёлтые
-  perf_ang[2] = between(perf_ang[0], perf_ang[1]); //угол между центрами ворот
-  our_y = 60 / sin(DEG_TO_RAD * perf_ang[2]) * sin(DEG_TO_RAD * perf_ang[0]) * sin(DEG_TO_RAD * perf_ang[1]);
-  our_x = abs(our_y) / tan(DEG_TO_RAD * abs(perf_ang[goal]));
-  
-  Serial.print(" angles to goals: ");
-  Serial.print(perf_ang[0]);
-  Serial.print("  ");
-  Serial.print(perf_ang[1]);
-  Serial.print(" coords: ");
-  Serial.print(our_y);
-   Serial.print("  ");
-  Serial.print(our_x);
+    perf_ang[0] = between(goal_ans[0], gyro_ang); //cиние
+    perf_ang[1] = between(goal_ans[1], gyro_ang); //жёлтые
+    crds.angle = between(perf_ang[0], perf_ang[1]); //угол между центрами ворот
+    crds.y = 60 / sin(DEG_TO_RAD * crds.angle) * sin(DEG_TO_RAD * perf_ang[0]) * sin(DEG_TO_RAD * perf_ang[1]);
+    crds.x = abs(crds.y) / tan(DEG_TO_RAD * abs(perf_ang[goal]));
+
+    Serial.print(" angles to goals: ");
+    Serial.print(perf_ang[0]);
+    Serial.print("  ");
+    Serial.print(perf_ang[1]);
+    Serial.print(" coords: ");
+    Serial.print(crds.x);
+    Serial.print("  ");
+    Serial.print(crds.y);
+
 }
